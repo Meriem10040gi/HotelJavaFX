@@ -70,7 +70,13 @@
         <groupId>org.kordamp.bootstrapfx</groupId>
         <artifactId>bootstrapfx-core</artifactId>
         <version>0.4.0</version>
-    </dependency><dependency>
+    </dependency>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx-fontawesome</artifactId>
+            <version>4.7.0-9.1.2</version>
+        </dependency>
+        <dependency>
         <groupId>eu.hansolo</groupId>
         <artifactId>tilesfx</artifactId>
         <version>21.0.3</version>
@@ -113,6 +119,12 @@
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
             <version>0.4.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
         </dependency>
 
 

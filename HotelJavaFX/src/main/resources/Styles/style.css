@@ -1,0 +1,92 @@
+.white-background{
+    -fx-background-color: '#fff';
+}
+.right-side-border{
+    -fx-border-color:
+            #6F6F6F;
+    -fx-border-width: 0 1 0 0;
+}
+.search-container{
+    -fx-border-color: #6F6F6F; -fx-border-radius: 30;
+}
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-width: 0 0 0 0 ;
+}
+.primary-color{
+    -fx-background-color:#EFF2F6
+}
+.card{
+    -fx-background-color:fff;
+    -fx-background-radius:10
+}
+.card2{
+    -fx-background-color:#cbdfbd;
+    -fx-background-radius:10
+}
+.card3{
+    -fx-background-color:#fcf6bd;
+    -fx-background-radius:10
+}
+.buttons {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-font: 16px "Arial";
+    -fx-border-width: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.buttons:hover {
+    -fx-background-color: #cbdfbd;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+.buttons:pressed {
+    -fx-background-color: #98B88D;
+    -fx-cursor: hand;
+}
+/* MON COMPTE */
+
+.text-input{
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1 0 ;
+    -fx-border-color: #98B88D;
+}
+.buttons2 {
+    -fx-background-color: #588157;
+    -fx-background-radius: 30;
+}
+.buttons2:hover{
+    -fx-background-color: #3a5a40;
+    -fx-cursor: hand;
+}
+.buttons2:pressed {
+    -fx-background-color: #98B88D;
+    -fx-cursor: hand;
+}
+/*  Utilisateurs */
+.most-reserved-hotels{
+    -fx-background-radius: 0 50 50 50;
+}
+.buttons3 {
+    -fx-background-color: #415a77;
+    -fx-background-radius: 30;
+}
+.buttons3:hover{
+    -fx-background-color: #778da9;
+    -fx-cursor: hand;
+}
+.buttons3:pressed {
+    -fx-background-color: #1b263b;
+    -fx-cursor: hand;
+}
+.user-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-padding: 3;
+}
+.user-row:hover {
+    -fx-background-color: #e0e0e0;
+}
