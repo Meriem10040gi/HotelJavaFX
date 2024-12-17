@@ -1,0 +1,49 @@
+.bar-chart {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+}
+
+
+.chart-bar {
+    -fx-bar-fill: #007bff;
+}
+
+.category-axis .axis-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+}
+
+.number-axis .axis-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+}
+
+.category-axis .tick-mark, .number-axis .tick-mark {
+    -fx-stroke: #adb5bd;
+}
+
+.category-axis, .number-axis {
+    -fx-background-insets: 0 0 1 0;
+    -fx-background-color: transparent;
+}
+
+.legend {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6c757d;
+}
+
+
+.chart-grid-lines {
+    -fx-stroke: #e0e0e0;
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #343a40;
+    -fx-padding: 10px;
+}

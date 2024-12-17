@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.layout.BorderPane?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1065.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hoteljavafx.Controller.HotelController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <children>
+                <Label prefHeight="49.0" prefWidth="256.0" text="Hotels">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+                </Label>
+                <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="2.0" styleClass="transparent" stylesheets="@../Styles/../Styles/style.css">
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/dashboard/icons8-search-30.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </Button>
+                <Button layoutX="120.0" layoutY="40.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="2.0" styleClass="transparent" stylesheets="@../Styles/../Styles/style.css">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/dashboard/icons8-menu-30.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <HBox prefHeight="150.0" prefWidth="1065.0" spacing="50.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: bc4749;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Europe" textFill="WHITE">
+                    <HBox.margin>
+                        <Insets left="60.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="Constantia Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="40.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #588157;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Afrique" textFill="WHITE">
+                    <font>
+                        <Font name="Constantia Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="270.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: ffc9b9;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Asia" textFill="WHITE">
+                    <font>
+                        <Font name="Constantia Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="470.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: ffb703;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Eustralie" textFill="WHITE">
+                    <font>
+                        <Font name="Constantia Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="670.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #219ebc;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Amerique" textFill="WHITE">
+                    <font>
+                        <Font name="Constantia Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+      <Button fx:id="addhotel" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#AddHotel" prefHeight="42.0" prefWidth="92.0" styleClass="buttons2" stylesheets="@../Styles/style.css" text="+ Add Hotel" textAlignment="RIGHT">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="970.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+      </Button>
+        <HBox prefHeight="479.0" prefWidth="1065.0">
+            <children>
+                <VBox prefHeight="425.0" prefWidth="1066.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="1066.0" style="-fx-background-color: e5e6e4;">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <children>
+                                <Label prefHeight="17.0" prefWidth="90.0" text="ID">
+                                    <HBox.margin>
+                                        <Insets left="30.0" />
+                                    </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                                </Label>
+                                <Label layoutX="40.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" text="Image">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="40.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" text="Nom ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="97.0" layoutY="29.0" prefHeight="17.0" prefWidth="155.0" text="Address">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="155.0" layoutY="29.0" prefHeight="17.0" prefWidth="95.0" text="Note">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" text="Date Ajout">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" text="Date Update">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="80.0" text="Actions">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                                <Label alignment="CENTER" layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="91.0" text="Chambres">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </HBox>
+                        <ScrollPane fx:id="scrollPane" prefHeight="381.0" prefWidth="1066.0" styleClass="transparent" stylesheets="@../Styles/style.css">
+                            <content>
+                                <VBox fx:id="vboxHotels" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="1053.0" style="-fx-background-color: white;" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+    </children>
+</VBox>

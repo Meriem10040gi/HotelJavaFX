@@ -1,0 +1,59 @@
+/* CSS for app */
+
+.btnGreen{
+	-fx-background-color:  #3cbc53;
+}
+
+.background{
+	-fx-background-color: DODGERBLUE;
+}
+/* Conteneur principal de la pagination */
+.custom-pagination .pagination-control {
+	-fx-background-color: transparent;
+	-fx-padding: 0px;
+	-fx-alignment: center;
+}
+
+/* Boutons de la pagination */
+.custom-pagination .pagination-control .arrow-button,
+.custom-pagination .pagination-control .number-button {
+	-fx-background-color: white;
+	-fx-text-fill: #007bff;
+	-fx-border-color: #dee2e6;
+	-fx-border-radius: 5px;
+	-fx-padding: 2px 4px;
+	-fx-cursor: hand;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-min-width: 40px;
+	-fx-min-height: 30px;
+}
+
+/* Boutons de page active */
+.custom-pagination .pagination-control .number-button:selected {
+	-fx-background-color: #007bff;
+	-fx-text-fill: white;
+
+}
+
+/* Boutons au survol */
+.custom-pagination .pagination-control .arrow-button:hover,
+.custom-pagination .pagination-control .number-button:hover {
+	-fx-background-color: transparent;
+	-fx-text-fill: #0056b3;
+}
+
+/* Boutons désactivés */
+.custom-pagination .pagination-control .arrow-button:disabled {
+	-fx-background-color: #f8f9fa;
+	-fx-text-fill: #6c757d;
+	-fx-border-color: #dee2e6;
+	-fx-cursor: default;
+}
+
+/* Ajuste l'espacement entre les éléments */
+.custom-pagination .pagination-control .number-button,
+.custom-pagination .pagination-control .arrow-button {
+	-fx-margin: 0 5px;
+}
+
