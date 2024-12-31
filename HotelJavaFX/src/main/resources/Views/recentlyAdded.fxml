@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="282.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hoteljavafx.Controller.HomeController">
+   <children>
+      <HBox prefHeight="55.0" prefWidth="748.0" spacing="60.0">
+         <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <Button fx:id="topRated" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onClickTopRated" prefHeight="55.0" prefWidth="131.0" style="-fx-background-color: #f4f4f4;" styleClass="nvbr" stylesheets="@../Styles/style.css" text="Top Rated">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="RecentlyAdded" mnemonicParsing="false" onMouseClicked="#onClickRecentlyAdded" prefHeight="55.0" prefWidth="196.0" style="-fx-background-color: #f4f4f4; -fx-border-width: 0 0 2 0; -fx-border-color: #3d94ff;" text="Recently added" textFill="#3d94ff">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="button-view-more" stylesheets="@../Styles/style.css" text="View All" textFill="#3d94ff">
+               <HBox.margin>
+                  <Insets left="240.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="166.0" prefWidth="748.0">
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </VBox.margin>
+         <children>
+            <VBox prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+               <children>
+                  <HBox fx:id="hboxHotel1" onMouseClicked="#hotelClicked" prefHeight="41.0" prefWidth="389.0">
+                     <children>
+                        <ImageView fx:id="footerHotelImage1" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane prefHeight="17.0" prefWidth="307.0">
+                           <children>
+                              <Label fx:id="footerHotelName1" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelAdress1" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="232.0" text="Daoudiate">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelRating1" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxHotel3" layoutX="10.0" layoutY="10.0" onMouseClicked="#hotelClicked" prefHeight="46.0" prefWidth="378.0">
+                     <children>
+                        <ImageView fx:id="footerHotelImage3" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                           <children>
+                              <Label fx:id="footerHotelName3" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelAdress3" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="234.0" text="Daoudiate">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelRating3" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+               <children>
+                  <HBox fx:id="hboxHotel2" onMouseClicked="#hotelClicked" prefHeight="46.0" prefWidth="378.0">
+                     <children>
+                        <ImageView fx:id="footerHotelImage2" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                           <children>
+                              <Label fx:id="footerHotelName2" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelAdress2" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="230.0" text="Daoudiate">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelRating2" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxHotel4" layoutX="10.0" layoutY="10.0" onMouseClicked="#hotelClicked" prefHeight="46.0" prefWidth="378.0">
+                     <children>
+                        <ImageView fx:id="footerHotelImage4" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                           <children>
+                              <Label fx:id="footerHotelName4" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelAdress4" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="229.0" text="Daoudiate">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="footerHotelRating4" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
