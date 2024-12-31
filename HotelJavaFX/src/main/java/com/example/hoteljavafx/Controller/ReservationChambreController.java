@@ -1,5 +1,6 @@
 package com.example.hoteljavafx.Controller;
-
+import com.example.hoteljavafx.DAO.ReservationDAOI;
+import com.example.hoteljavafx.DAO.ReservationDAOImpl;
 import com.example.hoteljavafx.DAO.UserDAOI;
 import com.example.hoteljavafx.DAO.UserDAOImpl;
 import com.example.hoteljavafx.Model.Reservation;
@@ -16,7 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Data;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -62,11 +62,6 @@ public class ReservationChambreController {
         Label lblEmail = new Label(String.valueOf(user.getEmail()));
         lblEmail.setPrefWidth(220);
 
-        Label lblNumberA = new Label(String.valueOf(reservation.getNumberAdults()));
-        lblNumberA.setPrefWidth(140);
-
-        Label lblNumberC = new Label(String.valueOf(reservation.getNumberGuests()-reservation.getNumberAdults()));
-        lblNumberC.setPrefWidth(140);
 
         Label lblDateD = new Label(reservation.getDateDebut().toString());
         lblDateD.setPrefWidth(200);
@@ -74,7 +69,7 @@ public class ReservationChambreController {
         Label lblDateF = new Label(reservation.getDateFin().toString());
         lblDateF.setPrefWidth(200);
 
-        hbox.getChildren().addAll(lblId, lblEmail, lblNumberA, lblNumberC, lblDateD, lblDateF);
+        hbox.getChildren().addAll(lblId, lblEmail, lblDateD, lblDateF);
         hbox.setStyle("-fx-background-color: #f5f5f5; -fx-padding: 10;");
         return hbox;
     }
@@ -108,15 +103,6 @@ public class ReservationChambreController {
         loadView("/Views/Hotels.fxml");
     }
 
-    @FXML
-    private void handleStatisticsClick() throws IOException {
-        loadView("/Views/statistiques.fxml");
-    }
-
-    @FXML
-    private void handleSettingsClick() throws IOException {
-        loadView("/Views/parametres.fxml");
-    }
 
     @FXML
     private void handleAccountClick() throws IOException {
