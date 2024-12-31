@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -71,7 +72,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="10.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#handleAccountClick" prefHeight="50.0" prefWidth="331.0" styleClass="buttons" text="Mon compte">
+                <Button fx:id="editadmin" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="10.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#handleAccountClick" prefHeight="50.0" prefWidth="331.0" styleClass="buttons" text="Mon compte">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -102,7 +103,7 @@
                         <Pane prefHeight="56.0" prefWidth="494.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="250.0" styleClass="search-container" stylesheets="@../Styles/style.css">
                             <children>
-                                <ImageView fitHeight="25.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="25.0" fitWidth="48.0" onMouseClicked="#getHomePage" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../Images/dashboard/icons8-search-30.png" />
                                     </image>
@@ -110,11 +111,18 @@
                                 <TextField prefHeight="27.0" prefWidth="175.0" promptText="Rechercher" styleClass="transparent" stylesheets="@../Styles/style.css" />
                             </children>
                         </HBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Images/dashboard/icons8-notification-30.png" />
-                            </image>
-                        </ImageView>
+                  <Button mnemonicParsing="false" onAction="#getHomePage" styleClass="buttons" stylesheets="@../Styles/style.css">
+                     <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                                  <image>
+                                      <Image url="@../Images/icons/icons8-home-24.png" />
+                                  </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                              </ImageView>
+                     </graphic>
+                  </Button>
                         <HBox alignment="CENTER" spacing="5.0">
                             <children>
                                 <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
