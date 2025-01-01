@@ -18,7 +18,7 @@ public interface UserDAOI {
 
     List<User> getAllUsers() throws IOException, SQLException;
 
-    void UpdateUser(String nom, String prenom, String address, String email, String phone, int id) throws IOException, SQLException;
+    void UpdateUser(String nom, String prenom, String address, String email, String phone,int id) throws IOException, SQLException;
 
     void UpdatePasswordUser(String email, String password, String confPassword) throws IOException, SQLException;
 

@@ -174,7 +174,7 @@ public class UserDAOImpl implements UserDAOI{
     }
 
     @Override
-    public void UpdateUser(String nom, String prenom, String address, String email, String phone, int id) throws IOException, SQLException {
+    public void UpdateUser(String nom, String prenom, String address, String email, String phone,int id) throws IOException, SQLException {
         String sql = "UPDATE User SET nom = ?, prenom = ?, address = ?, email = ?, phone = ? WHERE idUser = ?";
 
         try  {
@@ -233,6 +233,7 @@ public class UserDAOImpl implements UserDAOI{
     }
 
     @Override
+
     public List<Integer> selectFavoriteHotels(int idUser){
         List<Integer> favoriteHotels = new ArrayList<>();
         GestionDB gestionDB = new GestionDB();
