@@ -4,14 +4,10 @@ import com.example.hoteljavafx.Model.Room;
 import com.example.hoteljavafx.Utils.GestionDB;
 import com.example.hoteljavafx.Utils.TypeRoom;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,7 +70,14 @@ public class RoomDAOImpl implements RoomDAOI {
         }
         return room;
     }
-
+    @Override
+    public List<Room> getListRoom(List<Integer> idRooms) throws SQLException {
+        List<Room> rooms = new ArrayList<>();
+        for(Integer idRoom : idRooms){
+            rooms.add(getRoom(idRoom));
+        }
+        return rooms;
+    }
     @Override
     public boolean isDisponible(int idRoom, Date debut, Date fin) throws SQLException {
         String sql = "SELECT COUNT(*) FROM Reservation WHERE idRoom = ? AND ((dateDebut BETWEEN ? AND ? OR dateFin BETWEEN ? AND ?) OR (dateDebut <= ? AND dateFin >= ?))  ";
@@ -202,4 +205,112 @@ public class RoomDAOImpl implements RoomDAOI {
             Pilot.close();
         }
     }
+
+    @Override
+    public int getNbrRooms() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT count(*) FROM Room";
+        try {
+            Pilot.connecte("hotelreservation", "root", "");
+            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+
+    }
+    @Override
+    public List<Room> getAllRooms() throws SQLException {
+        String sql = "SELECT * FROM Room ";
+        List<Room> rooms = new ArrayList<>();
+
+        try {
+            Pilot.connecte("hotelreservation", "root", "");
+            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Room room = new Room(
+                        rs.getInt("idRoom"),
+                        rs.getInt("idHotel"),
+                        rs.getInt("numero"),
+                        TypeRoom.valueOf(rs.getString("typeRoom")),
+                        rs.getString("description"),
+                        rs.getDouble("prix"),
+                        rs.getBoolean("disponibilite"),
+                        rs.getString("image"),
+                        rs.getDate("dateAjout"),
+                        rs.getDate("dateUpdate")
+                );
+                rooms.add(room);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            Pilot.close();
+        }
+        return rooms;
+    }
+    @Override
+    public int getIdHotel(int idRoom){
+        String req = "SELECT idHotel FROM room WHERE idRoom=?";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setInt(1,idRoom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Integer> getRoomsInHotel(int idhotel)throws IOException, SQLException{
+        List<Integer> idRoomsInHotel = new ArrayList<>();
+        try {
+            Pilot.connecte("hotelreservation", "root", "");
+            String req = "SELECT idRoom FROM room WHERE idHotel=?";
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setInt(1, idhotel);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                idRoomsInHotel.add(rs.getInt("idRoom"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return idRoomsInHotel;
+    }
+    @Override
+    public int nbrRooms(int idHotel) throws IOException, SQLException{
+        String req = "SELECT COUNT(*) FROM room where idHotel=?";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setInt(1,idHotel);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) { // Lire le premier enregistrement
+                return rs.getInt(1); // Obtenir la valeur de la première colonne
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
 }

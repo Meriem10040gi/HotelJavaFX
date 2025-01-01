@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -76,7 +77,8 @@ public class FrontMETHODS {
                 labels.get(0).setText(name);
                 labels.get(1).setText(address);
                 labels.get(2).setText(String.format("%.1f ★", rating)); // Affichage du rating avec une étoile
-                v.setImage( new Image(getClass().getResource(imagePath).toExternalForm())); // Charge l'image (chemin ou URL)
+                if (imagePath != null && !imagePath.isEmpty()) {v.setImage( new Image(getClass().getResource(imagePath).toExternalForm()));} // Charge l'image (chemin ou URL)
+                else {v.setImage( new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm()));} // Charge l'image (chemin ou URL)
             }
             else{
                 System.out.println("hotel not found");
@@ -159,7 +161,10 @@ public class FrontMETHODS {
                 ((Label)((VBox)v.getChildren().get(1)).getChildren().get(0)).setText("room "+id);
                 ((Label)((VBox)v.getChildren().get(1)).getChildren().get(1)).setText(typeRoom);
                 ((Label)((VBox)v.getChildren().get(1)).getChildren().get(2)).setText(String.format(prix + " $"));
-                ((ImageView)v.getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())); ;
+                if (image != null && !image.isEmpty()) {
+                    ((ImageView)v.getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())); }
+                else {
+                    ((ImageView)v.getChildren().get(0)).setImage( new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm())); }
             }
             else{
                 System.out.println("hotel not found");
@@ -183,7 +188,10 @@ public class FrontMETHODS {
                 String address = rs.getString("address");
                 String image = rs.getString("image");
                 double rating = rs.getDouble("rating");
-                ((ImageView) hboxesRating.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm()));
+                if (image != null && !image.isEmpty()) {
+                    ((ImageView) hboxesRating.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm()));}
+                else {
+                    ((ImageView) hboxesRating.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm()));}
                 ((Label) ((AnchorPane) hboxesRating.get(index).getChildren().get(1)).getChildren().get(0)).setText(name);
                 ((Label) ((AnchorPane) hboxesRating.get(index).getChildren().get(1)).getChildren().get(1)).setText(address);
                 ((Label) ((AnchorPane) hboxesRating.get(index).getChildren().get(1)).getChildren().get(2)).setText(rating + "");
@@ -203,7 +211,10 @@ public class FrontMETHODS {
                 String address = rs.getString("address");
                 String image = rs.getString("image");
                 double rating = rs.getDouble("rating");
-                ((ImageView) hboxesDateAjout.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())); ;
+                if (image != null && !image.isEmpty()) {
+                    ((ImageView) hboxesDateAjout.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())); }
+                else{
+                    ((ImageView) hboxesDateAjout.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm())); }
                 ((Label) ((AnchorPane) hboxesDateAjout.get(index).getChildren().get(1)).getChildren().get(0)).setText(name);
                 ((Label) ((AnchorPane) hboxesDateAjout.get(index).getChildren().get(1)).getChildren().get(1)).setText(address);
                 ((Label) ((AnchorPane) hboxesDateAjout.get(index).getChildren().get(1)).getChildren().get(2)).setText(rating + "");
@@ -217,16 +228,41 @@ public class FrontMETHODS {
     public void loadHotels(List<VBox> vboxes) throws SQLException, ClassNotFoundException {
         HotelDAOI hotelDao = new HotelDAOImpl();
         ResultSet rs=hotelDao.RSallHotels(vboxes);
-            int index = 0;
+        int index = 0;
         while (rs.next()) {
-                String name = rs.getString("name");
-                String address = rs.getString("address");
-                String image = rs.getString("image");
-                ((ImageView)vboxes.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())); ;
-                ((Label)((VBox)((HBox)vboxes.get(index).getChildren().get(1)).getChildren().get(0)).getChildren().get(0)).setText(name);
-                ((Label)((VBox)((HBox)vboxes.get(index).getChildren().get(1)).getChildren().get(0)).getChildren().get(1)).setText(address);
-                index++;
+            String name = rs.getString("name");
+            String address = rs.getString("address");
+            String image = rs.getString("image");
+            if (image != null && !image.isEmpty()) {
+                ((ImageView)vboxes.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource(image).toExternalForm())) ;}
+            else{
+                ((ImageView)vboxes.get(index).getChildren().get(0)).setImage( new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm())) ;}
+            ((Label)((VBox)((HBox)vboxes.get(index).getChildren().get(1)).getChildren().get(0)).getChildren().get(0)).setText(name);
+            ((Label)((VBox)((HBox)vboxes.get(index).getChildren().get(1)).getChildren().get(0)).getChildren().get(1)).setText(address);
+            index++;
 
+        }
+    }
+    public boolean amongMyFavorites(String clickedHotelName) throws SQLException, IOException {
+        UserDAOI userDao = new UserDAOImpl();
+        HotelDAOI hotelDao = new HotelDAOImpl();
+        if (userDao.selectFavoriteHotels(Session.getInstance().getUserId()).isEmpty()) {
+            return false;
+        }
+        if(userDao.selectFavoriteHotels(Session.getInstance().getUserId()).contains(hotelDao.idHotel(clickedHotelName))){
+            return true;
+        }
+        return false;
+
+    }
+    public void setStyleHeart(String name, Pane heart) throws SQLException, IOException {
+        if(amongMyFavorites(name)){
+            heart.getStyleClass().clear();
+            heart.getStyleClass().add("button-favorite-selected");
+        }
+        else{
+            heart.getStyleClass().clear();
+            heart.getStyleClass().add("button-favorite");
         }
     }
 

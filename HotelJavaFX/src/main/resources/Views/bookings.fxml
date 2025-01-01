@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hoteljavafx.Controller.bookingsController">
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" styleClass="white-background" stylesheets="@../Styles/style.css">
+         <children>
+            <HBox prefHeight="165.0" prefWidth="1070.0">
+               <children>
+                  <HBox prefHeight="159.0" prefWidth="1070.0" styleClass="white-background" stylesheets="@../Styles/style.css">
+                     <children>
+                        <Label prefHeight="61.0" prefWidth="122.0" text="My bookings">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="500.0" top="50.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <TableView fx:id="reservationData" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Styles/style.css">
+              <columns>
+                <TableColumn fx:id="colnumero" prefWidth="93.11107885837555" text="N" />
+                <TableColumn fx:id="colhotel" prefWidth="150.0" resizable="false" text="Hotel" />
+                  <TableColumn fx:id="colchambre" prefWidth="150.0" resizable="false" text="Chambre" />
+                  <TableColumn fx:id="colcheckin" prefWidth="200.0" resizable="false" text="Check in" />
+                  <TableColumn fx:id="colcheckout" prefWidth="210.0" resizable="false" text="Check out" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="140.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

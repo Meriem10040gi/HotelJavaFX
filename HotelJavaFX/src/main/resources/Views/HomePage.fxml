@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hoteljavafx.Controller.HomeController">
+    <left>
+        <VBox alignment="CENTER" prefHeight="685.0" prefWidth="172.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <children>
+            <Button fx:id="loginbtn" mnemonicParsing="false" onAction="#Login" prefHeight="32.0" prefWidth="84.0" styleClass="button-login" stylesheets="@../Styles/style.css" text="Sign in">
+               <VBox.margin>
+                  <Insets bottom="100.0" top="-220.0" />
+               </VBox.margin>
+            </Button>
+                <VBox id="VBoxbuttons" prefHeight="65.0" prefWidth="209.0" styleClass="vbox-dashboard" stylesheets="@../Styles/style.css">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ViewHome" prefHeight="66.0" prefWidth="81.0" styleClass="buttons-sidebar" stylesheets="@../Styles/style.css" text="Home">
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                </VBox>
+                <VBox id="VBoxbuttons" layoutX="50.0" layoutY="164.0" prefHeight="65.0" prefWidth="209.0" styleClass="vbox-bookings" stylesheets="@../Styles/style.css">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ViewBookings" prefHeight="69.0" prefWidth="87.0" styleClass="buttons-sidebar" stylesheets="@../Styles/style.css" text="My bookings">
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                </VBox>
+                <VBox id="VBoxbuttons" layoutX="10.0" layoutY="206.0" prefHeight="65.0" prefWidth="209.0" styleClass="vbox-favorite" stylesheets="@../Styles/style.css">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ViewFavorite" prefHeight="71.0" prefWidth="87.0" styleClass="buttons-sidebar" stylesheets="@../Styles/style.css" text="Favorite">
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                </VBox>
+                <VBox id="VBoxbuttons" layoutX="10.0" layoutY="248.0" prefHeight="65.0" prefWidth="209.0" styleClass="vbox-notification" stylesheets="@../Styles/style.css">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="68.0" prefWidth="87.0" styleClass="buttons-sidebar" stylesheets="@../Styles/style.css" text="Notification">
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                </VBox>
+                <VBox id="VBoxbuttons" layoutX="10.0" layoutY="290.0" prefHeight="65.0" prefWidth="209.0" styleClass="vbox-settings" stylesheets="@../Styles/style.css">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="87.0" styleClass="buttons-sidebar" stylesheets="@../Styles/style.css" text="Settings">
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <HBox fx:id="hb" prefHeight="720.0" prefWidth="1266.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="720.0" prefWidth="545.0" style="-fx-background-color: #f4f4f4;">
+                    <children>
+                        <HBox prefHeight="47.0" prefWidth="848.0">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="256.0" text="Find hotel to stay ...">
+                                    <font>
+                                        <Font name="System Bold" size="25.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="30.0" />
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="99.0" prefWidth="896.0" spacing="40.0">
+                            <children>
+                                <VBox prefHeight="100.0" prefWidth="195.0">
+                                    <children>
+                                        <Label prefHeight="52.0" prefWidth="92.0" text="Check in">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="checkIn" prefHeight="32.0" prefWidth="195.0" stylesheets="@../Styles/style.css" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="30.0" />
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox layoutX="40.0" layoutY="10.0" prefHeight="100.0" prefWidth="195.0">
+                                    <children>
+                                        <Label prefHeight="52.0" prefWidth="92.0" text="Check out">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="checkOut" prefHeight="32.0" prefWidth="195.0" />
+                                    </children>
+                                </VBox>
+                                <VBox layoutX="235.0" layoutY="10.0" prefHeight="100.0" prefWidth="195.0">
+                                    <children>
+                                        <Label prefHeight="52.0" prefWidth="92.0" text="Where to">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="cities" prefHeight="32.0" prefWidth="195.0" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" layoutX="431.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0">
+                                    <children>
+                                        <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#searchHotel" prefHeight="34.0" prefWidth="84.0" styleClass="button-clickable" stylesheets="@../Styles/style.css" text="Search" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets top="40.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <VBox prefHeight="253.0" prefWidth="817.0">
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="560.0">
+                                    <children>
+                                        <Label prefHeight="52.0" prefWidth="180.0" text="Lodging available">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="310.0" prefWidth="683.0" spacing="80.0">
+                                    <VBox.margin>
+                                        <Insets left="10.0" right="10.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <VBox fx:id="hotel1" onMouseClicked="#EV" prefHeight="191.0" prefWidth="211.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                                            <children>
+                                                <ImageView fx:id="imageHotel1" fitHeight="150.0" fitWidth="212.0" pickOnBounds="true" />
+                                                <HBox prefHeight="127.0" prefWidth="201.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <VBox prefHeight="87.0" prefWidth="201.0">
+                                                            <children>
+                                                                <Label fx:id="labelHotel1" contentDisplay="CENTER" prefHeight="34.0" prefWidth="412.0">
+                                                                    <font>
+                                                                        <Font name="System Bold Italic" size="15.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="addHotel1" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="412.0" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </VBox>
+                                        <VBox fx:id="hotel2" layoutX="277.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="191.0" prefWidth="211.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                                            <children>
+                                                <ImageView fx:id="imageHotel2" fitHeight="150.0" fitWidth="212.0" pickOnBounds="true" />
+                                                <HBox prefHeight="127.0" prefWidth="201.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <VBox prefHeight="87.0" prefWidth="201.0">
+                                                            <children>
+                                                                <Label fx:id="labelHotel2" contentDisplay="CENTER" prefHeight="34.0" prefWidth="412.0">
+                                                                    <font>
+                                                                        <Font name="System Bold Italic" size="15.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="addHotel2" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="412.0" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox fx:id="hotel3" layoutX="404.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="191.0" prefWidth="211.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                                            <children>
+                                                <ImageView fx:id="imageHotel3" fitHeight="150.0" fitWidth="212.0" pickOnBounds="true" />
+                                                <HBox prefHeight="127.0" prefWidth="201.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <VBox prefHeight="87.0" prefWidth="201.0">
+                                                            <children>
+                                                                <Label fx:id="labelHotel3" contentDisplay="CENTER" prefHeight="34.0" prefWidth="412.0">
+                                                                    <font>
+                                                                        <Font name="System Bold Italic" size="15.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="addHotel3" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="412.0" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="30.0" right="30.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <AnchorPane prefHeight="293.0" prefWidth="854.0">
+                            <children>
+                                <VBox fx:id="VboxTopRated" layoutX="-8.0" layoutY="8.0" prefHeight="277.0" prefWidth="841.0" spacing="30.0">
+                                    <children>
+                                        <HBox prefHeight="55.0" prefWidth="874.0" spacing="50.0">
+                                            <children>
+                                                <Button fx:id="recentlyAdded" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="49.0" prefWidth="203.0" style="-fx-background-color: #f4f4f4;" styleClass="nvbr" stylesheets="@../Styles/style.css" text="Recently added">
+                                                    <font>
+                                                        <Font name="System Bold" size="22.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="topRated" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="185.0" style="-fx-background-color: #f4f4f4; -fx-border-width: 0 0 2 0; -fx-border-color: #3d94ff;" text="Top rated" textFill="#3d94ff">
+                                                    <font>
+                                                        <Font name="System Bold" size="22.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <HBox prefHeight="229.0" prefWidth="871.0">
+                                            <children>
+                                                <VBox prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+                                                    <children>
+                                                        <HBox fx:id="hboxHotel1" onMouseClicked="#EV" prefHeight="41.0" prefWidth="389.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage1" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="17.0" prefWidth="307.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName1" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress1" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="232.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating1" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox fx:id="hboxHotel3" layoutX="10.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage3" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName3" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress3" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="234.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating3" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                                <VBox layoutX="10.0" layoutY="10.0" prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+                                                    <children>
+                                                        <HBox fx:id="hboxHotel2" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage2" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName2" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress2" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="230.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating2" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox fx:id="hboxHotel4" layoutX="10.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage4" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName4" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress4" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="229.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating4" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="VboxRecentlyAdded" layoutX="-8.0" layoutY="8.0" prefHeight="279.0" prefWidth="844.0" spacing="30.0">
+                                    <children>
+                                        <HBox prefHeight="55.0" prefWidth="873.0" spacing="50.0">
+                                            <children>
+                                                <Button fx:id="recentlyAdded1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="49.0" prefWidth="203.0" style="-fx-background-color: #f4f4f4; -fx-border-width: 0 0 2 0; -fx-border-color: #3d94ff;" text="Recently added" textFill="#3d94ff">
+                                                    <font>
+                                                        <Font name="System Bold" size="22.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="topRated1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="185.0" style="-fx-background-color: #f4f4f4;" styleClass="nvbr" stylesheets="@../Styles/style.css" text="Top rated">
+                                                    <font>
+                                                        <Font name="System Bold" size="22.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onMouseClicked="#viewMoreOnClick" prefHeight="34.0" prefWidth="84.0" styleClass="button-clickable" stylesheets="@../Styles/style.css" text="View More" textFill="WHITE">
+                                                    <HBox.margin>
+                                                        <Insets left="250.0" top="7.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <HBox prefHeight="231.0" prefWidth="879.0">
+                                            <children>
+                                                <VBox prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+                                                    <children>
+                                                        <HBox fx:id="hboxHotel11" onMouseClicked="#EV" prefHeight="41.0" prefWidth="389.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage11" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="42.0" prefWidth="307.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName11" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress11" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="232.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating11" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox fx:id="hboxHotel31" layoutX="10.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage31" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName31" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress31" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="234.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating31" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                                <VBox layoutX="10.0" layoutY="10.0" prefHeight="177.0" prefWidth="378.0" spacing="30.0">
+                                                    <children>
+                                                        <HBox fx:id="hboxHotel21" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage21" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName21" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress21" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="230.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating21" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox fx:id="hboxHotel41" layoutX="10.0" layoutY="10.0" onMouseClicked="#EV" prefHeight="46.0" prefWidth="378.0">
+                                                            <children>
+                                                                <ImageView fx:id="footerHotelImage41" fitHeight="78.0" fitWidth="81.0" pickOnBounds="true" />
+                                                                <AnchorPane prefHeight="78.0" prefWidth="298.0">
+                                                                    <children>
+                                                                        <Label fx:id="footerHotelName41" layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="195.0" text="Ambassadeurs">
+                                                                            <font>
+                                                                                <Font name="System Bold" size="20.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelAdress41" layoutX="21.0" layoutY="51.0" prefHeight="26.0" prefWidth="229.0" text="Daoudiate">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label fx:id="footerHotelRating41" layoutX="255.0" layoutY="36.0" prefHeight="26.0" prefWidth="52.0" text="/Night">
+                                                                            <font>
+                                                                                <Font size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="40.0" right="20.0" top="30.0" />
+                            </VBox.margin>
+                        </AnchorPane>
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="720.0" prefWidth="155.0">
+                    <children>
+                  <VBox prefHeight="37.0" prefWidth="230.0" />
+                        <VBox alignment="CENTER" prefHeight="410.0" prefWidth="225.0" spacing="20.0" stylesheets="@../Styles/stylex.css">
+                           <children>
+                              <ImageView fx:id="imageHotelClickedSide" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="74.0" prefWidth="198.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="nameHotelClickedSide" prefHeight="17.0" prefWidth="344.0" text="Nom">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                          </Label>
+                                          <Pane fx:id="heart" onMouseClicked="#add_or_remove_FromFavoriteHotels" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Styles/stylex.css" />
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="addressHotelClickedSide" prefHeight="17.0" prefWidth="199.0" text="Adress">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin></Label>
+                                    <Label fx:id="ratingHotelClickedSide" text="Rating">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Label text="Overview">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="11.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="descriptionHotelClickedSide" prefHeight="200.0" prefWidth="225.0" style="-fx-control-inner-background: #f4f4f4; -fx-background-color: #f4f4f4;" styleClass="text-area" stylesheets="@../Styles/stylex.css">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="223.0" styleClass="button-clickable" stylesheets="@../Styles/style.css" textFill="WHITE">
+                            <graphic>
+                                <Label alignment="CENTER" onMouseClicked="#viewHotel" prefHeight="72.0" prefWidth="199.0" styleClass="button-clickable" stylesheets="@../Styles/style.css" text="View Hotel" textFill="WHITE">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                            </graphic>
+                            <VBox.margin>
+                                <Insets left="20.0" top="40.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

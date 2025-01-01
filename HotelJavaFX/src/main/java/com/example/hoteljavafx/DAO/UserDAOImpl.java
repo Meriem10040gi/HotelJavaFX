@@ -62,9 +62,50 @@ public class UserDAOImpl implements UserDAOI{
     }
 
     @Override
+    public String[] getHashedPassword(String email) {
+        String query = "SELECT idUser , password , role FROM user WHERE email = ?";
+        GestionDB gestionDB = new GestionDB();
+        PreparedStatement prepare = null;
+        ResultSet result = null;
+
+        try {
+            // Connexion à la base de données
+            gestionDB.connecte("hotelreservation", "root", "");
+            prepare = gestionDB.connexion.prepareStatement(query);
+            prepare.setString(1, email);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                String info[] = new String[3] ;
+                info[0] = String.valueOf(result.getInt("idUser"));
+                info[1] = result.getString("password");
+                info[2] = result.getString("role");
+                // Récupérer et retourner le mot de passe haché
+                return info;
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // Fermeture des ressources
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                gestionDB.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Retourne null si l'utilisateur n'existe pas
+        return null;
+    }
+
+
+    @Override
     public String addNewUser(String nom, String prenom, String address, String email, String phone, Role role, String password, String confPassword) throws IOException,IllegalArgumentException, SQLException {
         String sql = "INSERT INTO User (nom, prenom, address, email, phone, password,role,dateAjout,dateUpdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         try  {
+            // Connexion à la base de données
             Pilot.connecte("hotelreservation", "root", "");
             PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
             String checkEmail = "SELECT COUNT(*) FROM User WHERE email = ?";
@@ -74,6 +115,7 @@ public class UserDAOImpl implements UserDAOI{
             if (rs.next() && rs.getInt(1) > 0) {
                 throw new SQLException("Cet email est déjà utilisé.");
             }
+            // Paramétrage des valeurs
             stmt.setString(1, nom);
             stmt.setString(2, prenom);
             stmt.setString(3, address);
@@ -90,14 +132,14 @@ public class UserDAOImpl implements UserDAOI{
             stmt.setDate(9, new java.sql.Date(System.currentTimeMillis()));
             stmt.executeUpdate();
             Pilot.close();
-            return "L'ajout est effectuée avec success";
+            return "success";
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage());
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return "Erreur lors de l'ajout ";
+        return "Erreur ";
     }
 
     @Override
@@ -132,8 +174,8 @@ public class UserDAOImpl implements UserDAOI{
     }
 
     @Override
-    public void UpdateUser(String nom, String prenom, String address, String email, String phone) throws IOException, SQLException {
-        String sql = "UPDATE User SET nom = ?, prenom = ?, address = ?, email = ?, phone = ? WHERE email = ?";
+    public void UpdateUser(String nom, String prenom, String address, String email, String phone, int id) throws IOException, SQLException {
+        String sql = "UPDATE User SET nom = ?, prenom = ?, address = ?, email = ?, phone = ? WHERE idUser = ?";
 
         try  {
             Pilot.connecte("hotelreservation", "root", "");
@@ -143,7 +185,7 @@ public class UserDAOImpl implements UserDAOI{
             stmt.setString(3, address);
             stmt.setString(4, email);
             stmt.setString(5, phone);
-            stmt.setString(6, email);
+            stmt.setInt(6, id);
             stmt.executeUpdate();
             Pilot.close();
         } catch (SQLException | ClassNotFoundException e) {
@@ -186,33 +228,62 @@ public class UserDAOImpl implements UserDAOI{
     }
 
     @Override
-    public int login(String email, String password) throws IOException, SQLException {
-        String sql = "SELECT * FROM User WHERE email = ? AND password = ?";
-        try  {
-            Pilot.connecte("hotelreservation", "root", "");
-            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
-            stmt.setString(1, email);
-            stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                Session.getInstance().startSession(rs.getInt("idUser"));
-                return 1;
-            } else {
-                throw new IOException("données erronées");
+    public boolean isConnected()  {
+        return Session.getInstance().isConnected();
+    }
+
+    @Override
+    public List<Integer> selectFavoriteHotels(int idUser){
+        List<Integer> favoriteHotels = new ArrayList<>();
+        GestionDB gestionDB = new GestionDB();
+        String sql="select idHotel from userfavorites where idUser=?";
+        try{
+            gestionDB.connecte("hotelreservation","root", "");
+            PreparedStatement ps= gestionDB.connexion.prepareStatement(sql);
+            ps.setInt(1,idUser);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                favoriteHotels.add(rs.getInt("idHotel"));
             }
+
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return favoriteHotels;
+    }
+    @Override
+    public void insertFavoritehotel(int idUser, int idHotel) {
+        GestionDB gestionDB = new GestionDB();
+        String sql="insert into userfavorites(idUser,idHotel) values(?,?)";
+        try{
+            gestionDB.connecte("hotelreservation","root", "");
+            PreparedStatement ps= gestionDB.connexion.prepareStatement(sql);
+
+            ps.setInt(1,idUser);
+            ps.setInt(2,idHotel);
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return 0;
     }
 
     @Override
-    public void logout() {
-        Session.getInstance().endSession();
-    }
-
-    @Override
-    public boolean isConnected()  {
-        return Session.getInstance().isConnected();
+    public void deleteFavoritehotel(int idUser, int idHotel) {
+        GestionDB gestionDB = new GestionDB();
+        String sql="delete from userfavorites where  idUser=? and idHotel=?";
+        try{
+            gestionDB.connecte("hotelreservation","root", "");
+            PreparedStatement ps= gestionDB.connexion.prepareStatement(sql);
+            ps.setInt(1,idUser);
+            ps.setInt(2,idHotel);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -135,7 +135,7 @@ public class searchHotelController implements Initializable {
             searchMethod search=new searchMethod();
             Map<Integer,List<Integer>> map=new HashMap<>();
             try {
-                    map = search.searchMethodFunction(HomeController.getCheckInDate(), HomeController.getCheckOutDate(),HomeController.getCity());
+                map = search.searchMethodFunction(HomeController.getCheckInDate(), HomeController.getCheckOutDate(),HomeController.getCity());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (IOException | ClassNotFoundException e) {

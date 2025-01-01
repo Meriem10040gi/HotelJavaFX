@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1065.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hoteljavafx.Controller.UserController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Label prefHeight="49.0" prefWidth="256.0" text="Utilisateurs">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefHeight="18.0" prefWidth="2.0" styleClass="transparent" stylesheets="@../Styles/style.css">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/dashboard/icons8-search-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button layoutX="120.0" layoutY="40.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="2.0" styleClass="transparent" stylesheets="@../Styles/style.css">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/dashboard/icons8-menu-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="150.0" prefWidth="1065.0" spacing="50.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: bc4749;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Marrakech" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Constantia Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="40.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #588157;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Istanbul" textFill="WHITE">
+               <font>
+                  <Font name="Constantia Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="270.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: ffc9b9;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Madrid" textFill="WHITE">
+               <font>
+                  <Font name="Constantia Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="470.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: ffb703;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Manchester" textFill="WHITE">
+               <font>
+                  <Font name="Constantia Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="670.0" layoutY="10.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #219ebc;" styleClass="most-reserved-hotels" stylesheets="@../Styles/style.css" text="Dubai" textFill="WHITE">
+               <font>
+                  <Font name="Constantia Bold Italic" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label prefHeight="49.0" prefWidth="256.0" text="Utilisateurs">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#pageAddUser" prefHeight="58.0" prefWidth="120.0" styleClass="buttons3" stylesheets="@../Styles/style.css" text="ADD USER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <VBox.margin>
+            <Insets left="932.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <HBox prefHeight="503.0" prefWidth="1065.0">
+         <children>
+            <VBox prefHeight="503.0" prefWidth="1066.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="1052.0" style="-fx-background-color: e5e6e4;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="100.0" text="ID">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="29.0" prefHeight="26.0" prefWidth="150.0" text="Nom">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                        <Label layoutX="97.0" layoutY="29.0" prefHeight="26.0" prefWidth="150.0" text="Prenom">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                        <Label layoutX="155.0" layoutY="29.0" prefHeight="26.0" prefWidth="250.0" text="Email">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                        <Label layoutX="212.0" layoutY="29.0" prefHeight="26.0" prefWidth="150.0" text="telephone">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <Label layoutX="327.0" layoutY="29.0" prefHeight="26.0" prefWidth="200.0" text="Adresse">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <Label prefHeight="26.0" prefWidth="150.0" text="Role">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                        <Label layoutX="467.0" layoutY="29.0" prefHeight="17.0" prefWidth="150.0" text="Actions">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane prefHeight="447.0" prefWidth="1015.0" styleClass="transparent" stylesheets="@../Styles/style.css">
+                     <content>
+                        <VBox fx:id="userListContainer" prefHeight="498.0" prefWidth="1062.0" style="-fx-background-color: white;">
+
+
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

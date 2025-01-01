@@ -1,5 +1,6 @@
 package com.example.hoteljavafx.DAO;
 
+import com.example.hoteljavafx.Model.ReservationChambre;
 import com.example.hoteljavafx.Utils.GestionDB;
 
 import java.sql.PreparedStatement;
@@ -34,4 +35,22 @@ public class ChambreReservationDAOImpl implements ChambreReservationDAOI{
         }
         return reservations;
     }
+    @Override
+    public List<Integer> getIdReservationsOfaRoom(int idR) throws SQLException, ClassNotFoundException {
+        Pilot.connecte("hotelreservation", "root", "");
+        String req = "SELECT idReservation FROM reservationchambre WHERE idChambre=?";
+        List<Integer> idReservationsInRoom = new ArrayList<>();
+        try{
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setInt(1, idR);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                idReservationsInRoom.add(rs.getInt("idReservation"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return idReservationsInRoom;
+    }
+
 }

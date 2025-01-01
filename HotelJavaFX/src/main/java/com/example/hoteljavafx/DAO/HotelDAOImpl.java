@@ -2,6 +2,8 @@ package com.example.hoteljavafx.DAO;
 
 import com.example.hoteljavafx.Model.Hotel;
 import com.example.hoteljavafx.Utils.GestionDB;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -151,6 +153,94 @@ public class HotelDAOImpl implements HotelDAOI{
             }
         }
         return hotels;
+    }
+
+    @Override
+    public int getNbrHotels() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT count(*) FROM Hotel";
+        try {
+            Pilot.connecte("hotelreservation", "root", "");
+            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+
+    }
+    @Override
+    public ResultSet RSallHotels(List<VBox> vboxes) throws SQLException, ClassNotFoundException {
+        Pilot.connecte("hotelreservation", "root", "");
+        String req = "SELECT name, address, image FROM hotel ORDER BY RAND() LIMIT ?;";
+        PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+        ps.setInt(1,vboxes.size());
+        ResultSet rs = ps.executeQuery();
+        return rs;
+    }
+    @Override
+    public List<Integer> idHotelinCity(String city) throws SQLException {
+        List<Integer> idHotelsInCitySelected = new ArrayList<>();
+
+        String req = "SELECT idHotel FROM hotel WHERE address LIKE ?";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setString(1, "%" + city + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                idHotelsInCitySelected.add(rs.getInt("idHotel"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return idHotelsInCitySelected;
+    }
+    @Override
+    public int idHotel(String hotelName) throws IOException, SQLException{
+        String req = "SELECT idHotel FROM hotel where name like ? ";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setString(1,hotelName);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) { // Lire le premier enregistrement
+                return rs.getInt("idHotel"); // Obtenir la valeur de la première colonne
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+
+    }
+
+    @Override
+    public int getNumberRooms(int id) throws SQLException, ClassNotFoundException {
+        String req = "SELECT count(*) FROM Room where idHotel=? ";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps = Pilot.connexion.prepareStatement(req);
+            ps.setInt(1,id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
     }
 
 }

@@ -49,8 +49,6 @@ CREATE TABLE `reservation` (
                                `idUser` int(11) NOT NULL,
                                `dateDebut` date NOT NULL,
                                `dateFin` date NOT NULL,
-                               `numberGuests` int(11) NOT NULL,
-                               `numberAdults` int(11) NOT NULL,
                                `dateAjout` date NOT NULL,
                                `dateUpdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -59,17 +57,17 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`idReservation`, `idUser`, `dateDebut`, `dateFin`, `numberGuests`, `numberAdults`, `dateAjout`, `dateUpdate`) VALUES
-                                                                                                                                             (1, 101, '2024-12-10', '2024-12-15', 2, 2, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (2, 102, '2024-12-12', '2024-12-18', 4, 2, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (3, 103, '2024-12-20', '2024-12-25', 1, 1, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (4, 104, '2024-12-25', '2024-12-30', 3, 2, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (5, 105, '2024-12-15', '2024-12-20', 5, 3, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (6, 106, '2024-12-18', '2024-12-22', 2, 1, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (7, 107, '2024-12-22', '2024-12-28', 3, 2, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (8, 108, '2024-12-05', '2024-12-10', 2, 1, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (9, 109, '2024-12-01', '2024-12-04', 1, 1, '2024-12-02', '2024-12-02'),
-                                                                                                                                             (10, 110, '2024-12-08', '2024-12-12', 4, 3, '2024-12-02', '2024-12-02');
+INSERT INTO `reservation` (`idReservation`, `idUser`, `dateDebut`, `dateFin`, `dateAjout`, `dateUpdate`) VALUES
+                                                                                                                                             (1, 101, '2024-12-10', '2024-12-15', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (2, 102, '2024-12-12', '2024-12-18', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (3, 103, '2024-12-20', '2024-12-25', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (4, 104, '2024-12-25', '2024-12-30', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (5, 105, '2024-12-15', '2024-12-20', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (6, 106, '2024-12-18', '2024-12-22', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (7, 107, '2024-12-22', '2024-12-28', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (8, 108, '2024-12-05', '2024-12-10', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (9, 109, '2024-12-01', '2024-12-04', '2024-12-02', '2024-12-02'),
+                                                                                                                                             (10, 110, '2024-12-08', '2024-12-12', '2024-12-02', '2024-12-02');
 
 -- --------------------------------------------------------
 
@@ -254,7 +252,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `nom`, `prenom`, `address`, `email`, `phone`, `password`, `role`, `dateAjout`, `dateUpdate`) VALUES
-                                                                                                                               (101, 'Dupont', 'Pierre', '10 rue des Fleurs, Paris', 'pierre.dupont@example.com', '0123456789', 'password123', 'CLIENT', '2024-12-01', '2024-12-01'),
+                                                                                                                               (100, 'Dupont', 'Pierre', '10 rue des Fleurs, Paris', 'pierre.dupont@example.com', '0123456789', 'password123', 'CLIENT', '2024-12-01', '2024-12-01'),
+                                                                                                                               (101, 'Admin', 'Admin', '10 rue des Fleurs, Paris', 'admin@gmail.com', '0123456789', '$2a$10$G/U2igechLlc5yvgv7Ci9u..aP4usGPUGZBhbqefmPmHGpMarOCaG', 'AdminSup', '2024-12-01', '2024-12-01'),
                                                                                                                                (102, 'Lemoine', 'Sophie', '22 avenue de la République, Lyon', 'sophie.lemoine@example.com', '0234567890', 'password456', 'CLIENT', '2024-12-01', '2024-12-01'),
                                                                                                                                (103, 'Martin', 'Claire', '15 rue des Lilas, Marseille', 'claire.martin@example.com', '0345678901', 'password789', 'ADMIN', '2024-12-01', '2024-12-01'),
                                                                                                                                (104, 'Benoit', 'Julien', '3 rue de la Paix, Bordeaux', 'julien.benoit@example.com', '0456789012', 'password101', 'CLIENT', '2024-12-01', '2024-12-01'),
@@ -278,6 +277,14 @@ INSERT INTO `user` (`idUser`, `nom`, `prenom`, `address`, `email`, `phone`, `pas
 --
 -- Indexes for dumped tables
 --
+
+CREATE TABLE `userfavorites` (
+                               `idFavorites` int(11) NOT NULL,
+                               `idUser` int(11) NOT NULL,
+                               `idHotel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 --
 -- Indexes for table `hotel`
@@ -313,6 +320,9 @@ ALTER TABLE `room`
 ALTER TABLE `user`
     ADD PRIMARY KEY (`idUser`);
 
+
+ALTER TABLE `userfavorites`
+    ADD PRIMARY KEY (`idFavorites`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -322,6 +332,9 @@ ALTER TABLE `user`
 --
 ALTER TABLE `hotel`
     MODIFY `idHotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+ALTER TABLE `userfavorites`
+    MODIFY `idFavorites` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -371,4 +384,13 @@ ALTER TABLE `room`
     ADD CONSTRAINT `fk_hotel` FOREIGN KEY (`idHotel`) REFERENCES `hotel` (`idHotel`);
 COMMIT;
 
+ALTER TABLE `userfavorites`
+    ADD CONSTRAINT `fk_hotel_fav` FOREIGN KEY (`idHotel`) REFERENCES `hotel` (`idHotel`);
+COMMIT;
 
+ALTER TABLE `userfavorites`
+    ADD CONSTRAINT `fk_user_fav` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`);
+COMMIT;
+
+
+-- admin@gmail.com pass: Admin@12

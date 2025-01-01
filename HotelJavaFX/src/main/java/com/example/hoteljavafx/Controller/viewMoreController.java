@@ -9,12 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -58,22 +60,41 @@ public class viewMoreController implements Initializable {
     @FXML
     private ImageView imageHotelClickedSide;
     @FXML
+    private Label username;
+    @FXML
     private TextArea descriptionHotelClickedSide;
     @FXML
     DatePicker checkIn, checkOut;
-
     @FXML
-    public void EV(MouseEvent e){
+    private Pane heart;
+    FrontMETHODS mth = new FrontMETHODS();
+
+    private static List<String> favoriteHotels = new ArrayList<>();
+    static public List<String> getFavoriteHotels(){
+        return favoriteHotels;
+    }
+    @FXML
+    public void EV(MouseEvent e) throws SQLException, IOException {
         List<VBox> vboxes=List.of(hotel1,hotel2,hotel3,hotel11,hotel21,hotel31);
         List<Label> labels=List.of(nameHotelClickedSide,addressHotelClickedSide,ratingHotelClickedSide);
         FrontMETHODS fmeth=new FrontMETHODS();
         fmeth.hotelClicked(e,vboxes,null,labels,imageHotelClickedSide,descriptionHotelClickedSide);
+        mth.setStyleHeart(nameHotelClickedSide.getText(),heart);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (cities != null) {
             cities.getItems().addAll(Cities.values());}
+        try {
+            UserDAOI userdao = new UserDAOImpl();
+            username.setText(userdao.getUser(Session.getInstance().getUserId()).getNom() + " " + userdao.getUser(Session.getInstance().getUserId()).getPrenom());
+            mth.setStyleHeart(nameHotelClickedSide.getText(),heart);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         PaginationGest hotelGest=new PaginationGest();
         HotelDAOI hotelDao = new HotelDAOImpl();
         double nbHotels = 0;
@@ -104,6 +125,24 @@ public class viewMoreController implements Initializable {
         }
     }
 
+    public List<Integer> add_or_remove_FromFavoriteHotels(MouseEvent event) throws IOException, SQLException {
+        UserDAOI userDao = new UserDAOImpl();
+        HotelDAOI hotelDao = new HotelDAOImpl();
+        System.out.println("favorite hotels of "+ Session.getInstance().getUserId());
+
+        if (userDao.selectFavoriteHotels(Session.getInstance().getUserId()).contains(hotelDao.idHotel(nameHotelClickedSide.getText()))) {
+            userDao.deleteFavoritehotel(Session.getInstance().getUserId(), hotelDao.idHotel(nameHotelClickedSide.getText()));
+
+        }
+        else {
+            userDao.insertFavoritehotel(Session.getInstance().getUserId(), hotelDao.idHotel(nameHotelClickedSide.getText()));
+        }
+        mth.setStyleHeart(nameHotelClickedSide.getText(),heart);
+
+        return userDao.selectFavoriteHotels(Session.getInstance().getUserId());
+
+    }
+
     public void setPagination() throws SQLException, IOException, ClassNotFoundException {
         PaginationGest hotelGest=new PaginationGest();
         hotelGest.setPaginationHotel(pagination);
@@ -127,12 +166,21 @@ public class viewMoreController implements Initializable {
             }
         });
     }
-    public void viewHotel() throws IOException {
+    public void viewHotel() throws IOException, SQLException {
         System.out.println("viewhotel click");
-        if(HomeController.getHotelselection()==null || HomeController.getHotelselection().equals(""))
-            HomeController.setHotelselection(nameHotelClickedSide.getText());
-        loadView("ViewHotel.fxml");
-
+        HomeController.setHotelselection(nameHotelClickedSide.getText());
+        RoomDAOI rm = new RoomDAOImpl();
+        HotelDAOI ht = new HotelDAOImpl();
+        int id = ht.idHotel(nameHotelClickedSide.getText());
+        int l = rm.nbrRooms(id);
+        if(l > 0) {
+            System.out.println("j'ai entre a la bouclez avec nom = "+nameHotelClickedSide.getText()+" id = "+id+"  l = "+l);
+            loadView("ViewHotel.fxml");
+        }
+        else{
+            CustemAlerts.showCustomAlert("NO Rooms", "this hotel has no rooms yet ", "warning", getClass());
+            return;
+        }
     }
     private void loadView(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + fxmlFile));
@@ -141,15 +189,15 @@ public class viewMoreController implements Initializable {
     }
 
     public void searchHotel(MouseEvent event) throws IOException {
-            if (checkIn.getValue() != null && checkIn.getValue().isBefore(checkOut.getValue()) && cities.getValue() != null) {
-                HomeController.setCheckInDate(checkIn.getValue()) ;
-                HomeController.setCheckOutDate(checkOut.getValue());
-                HomeController.setCity(cities.getValue().toString());
-                loadView("searchHotel.fxml");
-            } else {
-                CustemAlerts.showCustomAlert("Error", "Veuillez remplir tous les champs Avec des valeurs valides  !!", "Error", getClass());
-                return;
-            }
+        if (checkIn.getValue() != null && checkIn.getValue().isBefore(checkOut.getValue()) && cities.getValue() != null) {
+            HomeController.setCheckInDate(checkIn.getValue()) ;
+            HomeController.setCheckOutDate(checkOut.getValue());
+            HomeController.setCity(cities.getValue().toString());
+            loadView("searchHotel.fxml");
+        } else {
+            CustemAlerts.showCustomAlert("Error", "Veuillez remplir tous les champs Avec des valeurs valides  !!", "Error", getClass());
+            return;
+        }
 
     }
 

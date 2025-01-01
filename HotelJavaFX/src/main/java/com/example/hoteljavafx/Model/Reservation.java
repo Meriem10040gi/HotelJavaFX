@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,8 +15,7 @@ public class Reservation {
     int idUser;
     Date dateDebut;
     Date dateFin;
-    int numberGuests;
-    int numberAdults;
     Date dateAjout;
     Date dateUpdate;
+    List<Room> rooms;
 }

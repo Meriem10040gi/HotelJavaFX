@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            margin: 40px;
+            margin-left: 110px;
+            padding: 0;
+            overflow-x: hidden; /* Prevents horizontal scroll */
+            justify-content: center;
+            display: block;
+        }
+        #card-element {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 20px; /* Makes the element rounded */
+            height: 40px;
+            width: 50%;
+        }
+        #submit-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px; /* Makes the button rounded */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #submit-button:hover {
+            background-color: #0056b3; /* Changes color on hover */
+        }
+        #payment-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h2>Enter your credit card details:</h2>
+<form id="payment-form">
+    <div id="card-element"></div>
+    <button id="submit-button">Pay Now</button>
+    <div id="card-errors" role="alert"></div>
+</form>
+<div id="payment-result"></div>
+
+<script>
+    const stripe = Stripe('pk_test_51QUTneRpAHGhTUniSn8qsOlORqmjPpgXiHemmb3yY5HA6KVS71fZb9MGUg4CO8I707vbWQSV0sonXefKk72CgnC300px3HVeWD');
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    const submitButton = document.getElementById('submit-button');
+    const paymentResultDiv = document.getElementById('payment-result');
+
+    async function sendPaymentResultToServer(success) {
+        try {
+            const response = await fetch('http://localhost:8081/payment-result', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    success: success,
+                    timestamp: new Date().toISOString()
+                }),
+            });
+
+            if (response.ok) {
+                console.log('Payment result sent successfully to the server.');
+            } else {
+                console.error('Failed to send payment result to the server.');
+            }
+        } catch (error) {
+            console.error('Error sending payment result:', error);
+        }
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+
+        try {
+            const response = await fetch('http://localhost:8081/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                paymentResultDiv.textContent = `Error: ${data.error}`;
+                paymentResultDiv.className = "error";
+                await sendPaymentResultToServer(false);
+                return;
+            }
+
+            const result = await stripe.confirmCardPayment(data.clientSecret, {
+                payment_method: { card: cardElement },
+            });
+
+            if (result.error) {
+                paymentResultDiv.textContent = `Payment failed: ${result.error.message}`;
+                paymentResultDiv.className = "error";
+                await sendPaymentResultToServer(false);
+            } else if (result.paymentIntent.status === 'succeeded') {
+                paymentResultDiv.textContent = "Payment successful!";
+                paymentResultDiv.className = "success";
+                await sendPaymentResultToServer(true);
+            }
+        } catch (error) {
+            paymentResultDiv.textContent = `Error: ${error.message}`;
+            paymentResultDiv.className = "error";
+            await sendPaymentResultToServer(false);
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>

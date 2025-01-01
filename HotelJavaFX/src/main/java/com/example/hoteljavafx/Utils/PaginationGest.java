@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -164,6 +165,7 @@ public class PaginationGest {
         gestionDB.connecte("hotelreservation", "root", "");
         HotelDAOI hotelDao = new HotelDAOImpl();
         int idHotel=hotelDao.idHotel(hotelName);
+
         // Requête pour récupérer les trois premiers hôtels
         String req = "SELECT TypeRoom,idRoom, image from room where idHotel=? LIMIT ? OFFSET ? ";
         int nbreHotel = 0;
@@ -212,13 +214,82 @@ public class PaginationGest {
     }
 
 
+    public void setPaginationFavorite(Pagination pagination,List<Integer> idHotels) throws SQLException, IOException {
+        double nbHotelfavorite = idHotels.size() / 6.0;
+        int nbrHotelinPage = traiterNombre(nbHotelfavorite);
+        System.out.println("nbr pagination : "+nbrHotelinPage);
+        pagination.setPageCount(nbrHotelinPage);
+    }
 
+    public void loadFavoriteHotels(int pageActuelle, int totalPages, List<VBox> vboxes, List<Integer> idHotels) throws SQLException, IOException, ClassNotFoundException {
+        // Connexion à la base de données
+        gestionDB.connecte("hotelreservation", "root", "");
 
+        // Déclaration des variables
+        List<Integer> nomsSelectionnes = new ArrayList<>();
+        int nombreHotels = 0;
+        int indiceDebut = 0;
 
+        // Gestion des indices de pagination
+        if (pageActuelle < totalPages) {
+            nombreHotels = 6; // Nombre d'hôtels par page
+            indiceDebut = (pageActuelle - 1) * nombreHotels;
+        } else if (pageActuelle == totalPages) {
+            // Si c'est la dernière page, ajuster le nombre d'hôtels restants
+            if (idHotels.size() % 6 == 0) {
+                nombreHotels = 6;
+            } else {
+                nombreHotels = idHotels.size() % 6;
+            }
+            indiceDebut = idHotels.size() - nombreHotels;
+        }
 
+        // Sélectionner une sous-liste d'hôtels pour la page actuelle
+        nomsSelectionnes = idHotels.subList(indiceDebut, indiceDebut + nombreHotels);
 
+        // Construction de la requête SQL avec des placeholders
+        String placeholders = String.join(",", nomsSelectionnes.stream().map(id -> "?").toArray(String[]::new));
+        String requete = "SELECT name, address, image FROM hotel WHERE idHotel IN (" + placeholders + ")";
+        PreparedStatement ps = gestionDB.connexion.prepareStatement(requete);
 
+        // Assignation des paramètres dans la requête
+        for (int i = 0; i < nomsSelectionnes.size(); i++) {
+            ps.setInt(i + 1, nomsSelectionnes.get(i));
+        }
 
+        // Exécution de la requête
+        ResultSet rs = ps.executeQuery();
+
+        // Parcourir les résultats et mettre à jour l'interface utilisateur (VBox)
+        int indice = 0;
+        while (rs.next()) {
+            String nomHotel = rs.getString("name");
+            String adresse = rs.getString("address");
+            String image = rs.getString("image");
+
+            if (indice < nombreHotels) {
+                // Mise à jour des labels et de l'image
+                ((Label) ((VBox) ((HBox) vboxes.get(indice).getChildren().get(1))
+                        .getChildren().get(0)).getChildren().get(0)).setText(nomHotel);
+                ((Label) ((VBox) ((HBox) vboxes.get(indice).getChildren().get(1))
+                        .getChildren().get(0)).getChildren().get(1)).setText(adresse);
+
+                if (image != null && !image.isEmpty()) {
+                    ((ImageView) vboxes.get(indice).getChildren().get(0)).setImage(new Image(getClass().getResource(image).toExternalForm()));
+                }
+                indice++;
+            }
+        }
+
+        // Effacer les anciens éléments pour les indices restants sur la dernière page
+        for (int i = nombreHotels; i < 6; i++) {
+            ((Label) ((VBox) ((HBox) vboxes.get(i).getChildren().get(1))
+                    .getChildren().get(0)).getChildren().get(0)).setText("");
+            ((Label) ((VBox) ((HBox) vboxes.get(i).getChildren().get(1))
+                    .getChildren().get(0)).getChildren().get(1)).setText("");
+            ((ImageView) vboxes.get(i).getChildren().get(0)).setImage(null);
+        }
+    }
 
 
 }

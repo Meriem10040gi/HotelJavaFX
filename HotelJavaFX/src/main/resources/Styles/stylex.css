@@ -1,0 +1,423 @@
+.buttons-sidebar{
+    -fx-background-color:white;
+}
+.buttons-sidebar:hover{
+    -fx-background-color:#3d94ff;
+}
+.button-clickable{
+    -fx-background-color:#3d94ff;
+    -fx-background-radius: 20;
+}
+.button-clickable:hover{
+    -fx-background-color:#2c79d9;
+    -fx-cursor: hand;
+}
+.button-clickable:pressed{;
+    -fx-background-radius: 20;
+    -fx-background-color:#2b69b5;
+}
+.redbutton-clickable{
+    -fx-background-color:#b95349;
+    -fx-background-radius: 20;
+}
+.redbutton-clickable:hover{
+    -fx-background-color:#a63d33;
+    -fx-cursor: hand;
+}
+.redbutton-clickable:pressed{;
+    -fx-background-radius: 20;
+    -fx-background-color:#b93f34;
+}
+.button-view-more{
+    -fx-background-color:#f4f4f4;
+}
+.button-view-more:hover{
+    -fx-cursor: hand;
+}
+.edit.button{
+    -fx-background-color:#3d94ff;
+}
+.delete.button{
+    -fx-background-color:#9b1c08;
+}
+
+
+
+/*SIDEBAR*/
+.vbox-dashboard {
+    -fx-background-image: url("../Images/icons/icons8-home-24.png");
+    -fx-background-position: 40px 20px;
+    -fx-background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.vbox-dashboard:hover {
+    -fx-background-image: url("../Images/icons/icons8-home-24-blue.png");
+    -fx-background-color:  #f4f4f4;
+    -fx-background-radius:20 0 0 20;
+}
+
+
+.vbox-bookings {
+    -fx-background-image: url("../Images/icons/icons8-ticket-24.png");
+    -fx-background-position: 40px 20px;
+    -fx-background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.vbox-bookings:hover {
+    -fx-background-image: url("../Images/icons/icons8-ticket-blue.png");
+    -fx-background-color:  #f4f4f4;
+    -fx-background-radius:20 0 0 20;
+}
+
+
+.vbox-favorite {
+    -fx-background-image: url("../Images/icons/icons8-favorite-24.png");
+    -fx-background-position: 40px 20px;
+    -fx-background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.vbox-favorite:hover {
+    -fx-background-image: url("../Images/icons/icons8-favorite-24-blue.png");
+    -fx-background-color:  #f4f4f4;
+    -fx-background-radius:20 0 0 20;
+}
+
+.button-favorite{
+    -fx-background-image: url("../Images/icons/icons8-heart-24.png");
+    -fx-background-position: 0px 0px;
+    -fx-background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+.button-favorite:hover{
+    -fx-background-image: url("../Images/icons/icons8-favorite-24-blue.png");
+    -fx-background-position: 0px 0px;
+    -fx-background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    -fx-cursor: hand;
+}
+.button-favorite-selected{
+    -fx-background-image: url("../Images/icons/icons8-favorite-24-blue.png");
+    -fx-background-position: 0px 0px;
+    -fx-background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    -fx-cursor: hand;
+}
+
+.vbox-settings {
+    -fx-background-image: url("../Images/icons/icons8-settings-24.png");
+    -fx-background-position: 40px 20px;
+    -fx-background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.vbox-settings:hover {
+    -fx-background-image: url("../Images/icons/icons8-settings-24-blue.png");
+    -fx-background-color:  #f4f4f4;
+    -fx-background-radius:20 0 0 20;
+}
+.vbox-notification {
+    -fx-background-image: url("../Images/icons/icons8-notification-24.png");
+    -fx-background-position: 40px 20px;
+    -fx-background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.vbox-notification:hover {
+    -fx-background-image: url("../Images/icons/icons8-notification-24-blue.png");
+    -fx-background-color:  #f4f4f4;
+    -fx-background-radius:20 0 0 20;
+}
+
+#VBoxbuttons:hover .button {
+    -fx-background-color: #f4f4f4; /* Couleur de fond du bouton */
+    -fx-text-fill: #3d94ff; /* Couleur du texte */
+
+}
+#VBoxbuttons:hover{
+    -fx-cursor: hand;
+}
+.username {
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-text-alignment: center; /* Centre le texte horizontalement */
+    -fx-font-size: 20px; /* Taille de la police */
+    -fx-pref-width: 200px; /* Largeur préférée pour le label */
+    -fx-pref-height: 50px; /* Hauteur préférée pour le label */
+    -fx-alignment: center; /* Centre le texte verticalement */
+}
+.nvbr{
+
+}
+.nvbr:hover{
+    -fx-text-fill: #3d94ff;
+    -fx-cursor: hand;
+}
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 09 21, 22, 4:12:17 PM
+    Author     : WINDOWS 10
+    Subscribe our Channel --> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
+ * Thanks for the support guys! <3
+*/
+
+/*
+.top-form{
+    -fx-background-color:#fff;
+    -fx-border-color:#000;
+    -fx-border-width:.4px .4px .2px .4px;
+}*/
+
+/*
+.semi-top-form{
+    -fx-background-color:#efefef;
+    -fx-border-color:#000;
+    -fx-border-width:.2px .4px .8px .4px;
+}*
+
+.close{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.close:hover{
+    -fx-background-color:#ff3547;
+}
+
+.minimize{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.minimize:hover{
+    -fx-background-color:#ddd;
+}
+
+.nav-form{
+    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+}
+
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-font-family:"Arial";
+    -fx-font-size:14px;
+    -fx-text-fill:#fff;
+    -fx-alignment:CENTER-LEFT;
+}
+
+.logout{
+    -fx-background-color:#219a6a;
+    -fx-background-radius:10px;
+    -fx-cursor:hand;
+}
+.logout:hover{
+    -fx-background-color:#18a383;
+}*/
+
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.white-bg {
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Blanc avec une opacité de 50% */
+    -fx-background-radius: 8px;
+}
+
+.white-bg {
+    -fx-background-color: rgba(255, 255, 255, 1); /* Blanc complètement opaque */
+    -fx-background-radius: 8px;
+    -fx-text-fill: #1877F2;
+}
+.white-btn {
+    -fx-background-color: rgba(255, 255, 255, 1); /* Blanc complètement opaque */
+    -fx-background-radius: 8px;
+    -fx-text-fill: #1877F2;
+    -fx-cursor:hand;
+}
+
+
+.card{
+    -fx-background-color:linear-gradient(to right, #2b303c, #525968);
+    -fx-background-radius:5px;
+}
+
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+}
+
+.textfield {
+    -fx-background-color: linear-gradient(to bottom, #fdfdff, #f9f9ff);
+    -fx-border-color: linear-gradient(to bottom right, #1877F2, #165EAB);
+    -fx-border-width: 0.8px;
+    -fx-font-family: "Tahoma";
+    -fx-border-radius: 4px;
+}
+
+.textfield:focused{
+    -fx-border-width:1.8px;
+    -fx-background-color:#fff;
+}
+
+.search{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:5px;
+    -fx-font-size:13px;
+    -fx-font-family:"Arial";
+    -fx-border-width:1px;
+    -fx-padding:0px 0px 0px 28px;
+}
+.search:focused{
+    -fx-border-width:2px;
+}
+
+.import-btn{
+    -fx-background-color:#ddd;
+    -fx-text-fill:red;
+    -fx-cursor:hand;
+}
+
+.add-btn{
+    -fx-background-color:#1877F2;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.add-btn:hover{
+    -fx-background-color:#3357a4;
+}
+
+.update-btn{
+    -fx-background-color:#327252;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.update-btn:hover{
+    -fx-background-color:#309a65;
+}
+
+.delete-btn{
+    -fx-background-color:#86253f;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.delete-btn:hover{
+    -fx-background-color:#ae1d46;
+}
+
+.clear-btn{
+    -fx-background-color:#753566;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.clear-btn:hover{
+    -fx-background-color:#9d3485;
+}
+
+.label-info {
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom right, #1877F2, #165EAB);
+    -fx-border-radius: 4px;
+    -fx-padding: 0px 0px 0px 8px;
+}
+
+
+.error {
+    -fx-background-color: linear-gradient(to bottom, #ffcccc, #ffe6e6); /* Fond rouge clair avec un dégradé doux */
+    -fx-border-color: linear-gradient(to bottom right, #ff4d4d, #e60000); /* Bordure rouge clair à rouge foncé */
+    -fx-border-width: 2px; /* Épaisseur de la bordure */
+    -fx-border-radius: 4px; /* Coins arrondis */
+}
+/* Style the TableView */
+.table-view {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #888;
+    -fx-border-width: 1px;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+/* Style the TableRow */
+.table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Style TableHeader */
+.table-view .column-header-background {
+    -fx-background-color: #2e99ff;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+/* Style TableColumn */
+.table-column {
+    -fx-alignment: CENTER;
+    -fx-padding: 5px;
+}
+
+/* Style the even and odd rows */
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+/* Style the selected row */
+.table-row-cell:focused {
+    -fx-background-color: #ffffff;
+}
+/* General styling for the pagination container */
+/* Pagination container */

@@ -70,7 +70,7 @@ public class HotelController {
         if(hotel.getImage()!=null && getClass().getResource(hotel.getImage())!=null)
             image = new Image(getClass().getResource(hotel.getImage()).toExternalForm());
         else
-            image = new Image(getClass().getResource("/Images/hotelimages/default-hotel.png").toExternalForm());
+            image = new Image(getClass().getResource("/Images/hotelimages/default.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(35);
         imageView.setFitWidth(50);

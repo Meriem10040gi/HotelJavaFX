@@ -77,16 +77,16 @@
             <version>4.7.0-9.1.2</version>
         </dependency>
         <dependency>
-        <groupId>eu.hansolo</groupId>
-        <artifactId>tilesfx</artifactId>
-        <version>21.0.3</version>
-        <exclusions>
-            <exclusion>
-                <groupId>org.openjfx</groupId>
-                <artifactId>*</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency><dependency>
+            <groupId>eu.hansolo</groupId>
+            <artifactId>tilesfx</artifactId>
+            <version>21.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency><dependency>
         <groupId>com.github.almasb</groupId>
         <artifactId>fxgl</artifactId>
         <version>17.3</version>
@@ -119,6 +119,22 @@
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
             <version>0.4.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>28.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

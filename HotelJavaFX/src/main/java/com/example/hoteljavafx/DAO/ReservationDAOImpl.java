@@ -1,13 +1,18 @@
 package com.example.hoteljavafx.DAO;
 
 import com.example.hoteljavafx.Model.Reservation;
+import com.example.hoteljavafx.Model.Room;
+import com.example.hoteljavafx.Utils.DateRange;
 import com.example.hoteljavafx.Utils.GestionDB;
+import com.example.hoteljavafx.Utils.ListReservation;
+import com.example.hoteljavafx.Utils.Session;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReservationDAOImpl implements ReservationDAOI{
@@ -27,10 +32,9 @@ public class ReservationDAOImpl implements ReservationDAOI{
                         rs.getInt("idUser"),
                         rs.getDate("dateDebut"),
                         rs.getDate("dateFin"),
-                        rs.getInt("numberGuests"),
-                        rs.getInt("numberAdults"),
                         rs.getDate("dateAjout"),
-                        rs.getDate("dateUpdate")
+                        rs.getDate("dateUpdate"),
+                        null
                 );
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -56,10 +60,9 @@ public class ReservationDAOImpl implements ReservationDAOI{
                         rs.getInt("idUser"),
                         rs.getDate("dateDebut"),
                         rs.getDate("dateFin"),
-                        rs.getInt("numberGuests"),
-                        rs.getInt("numberAdults"),
                         rs.getDate("dateAjout"),
-                        rs.getDate("dateUpdate")
+                        rs.getDate("dateUpdate"),
+                        null
                 );
                 reservations.add(reservation);
             }
@@ -88,30 +91,6 @@ public class ReservationDAOImpl implements ReservationDAOI{
         return 0;
 
     }
-    @Override
-    public void addNewReservation(int idRoom, int idUser, int nbrGuests, int nbrAdults, Date debut, Date fin) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO Reservation (idRoom, idUser, numberGuests, numberAdults, dateDebut, dateFin, dateAjout, dateUpdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            Pilot.connecte("hotelreservation", "root", "");
-            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql);
-            stmt.setInt(1, idRoom);
-            stmt.setInt(2, idUser);
-            stmt.setInt(3, nbrGuests);
-            stmt.setInt(4, nbrAdults);
-            stmt.setDate(5, new java.sql.Date(debut.getTime()));
-            stmt.setDate(6, new java.sql.Date(fin.getTime()));
-            stmt.setDate(7, new java.sql.Date(System.currentTimeMillis()));
-            stmt.setDate(8, new java.sql.Date(System.currentTimeMillis()));
-            stmt.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            Pilot.close();
-        }
-    }
-
 
     @Override
     public List<Reservation> getAllReservationsRoom(int idRoom) throws SQLException, ClassNotFoundException {
@@ -128,15 +107,11 @@ public class ReservationDAOImpl implements ReservationDAOI{
                 Reservation reservation = new Reservation(
                         rs.getInt("idReservation"),
                         rs.getInt("idUser"),
-                        //rs.getInt("idRoom"),
                         rs.getDate("dateDebut"),
                         rs.getDate("dateFin"),
-                        rs.getInt("numberGuests"),
-                        rs.getInt("numberAdults"),
                         rs.getDate("dateAjout"),
-                        rs.getDate("dateUpdate")
-                        // rs.getString("confirmationCode"),
-                        // rs.getBoolean("statue")
+                        rs.getDate("dateUpdate"),
+                        null
                 );
                 reservations.add(reservation);
             }
@@ -164,15 +139,11 @@ public class ReservationDAOImpl implements ReservationDAOI{
                 Reservation reservation = new Reservation(
                         rs.getInt("idReservation"),
                         rs.getInt("idUser"),
-                        //rs.getInt("idRoom"),
                         rs.getDate("dateDebut"),
                         rs.getDate("dateFin"),
-                        rs.getInt("numberGuests"),
-                        rs.getInt("numberAdults"),
                         rs.getDate("dateAjout"),
-                        rs.getDate("dateUpdate")
-                        //rs.getString("confirmationCode"),
-                        //rs.getBoolean("statue")
+                        rs.getDate("dateUpdate"),
+                        null
                 );
                 reservations.add(reservation);
             }
@@ -185,38 +156,6 @@ public class ReservationDAOImpl implements ReservationDAOI{
         return reservations;
     }
 
-    @Override
-    public void UpdateReservation(int idReservation, int nbrGuests, int nbrAdults, Date debut, Date fin) throws SQLException, ClassNotFoundException {
-        String sql1 = "SELECT idRoom FROM Reservation WHERE idReservation = ?";
-        String sql2 = "UPDATE Reservation SET numberGuests = ?, numberAdults = ?, dateDebut = ?, dateFin = ?, dateUpdate = ? WHERE idReservation = ?";
-
-        try {
-            Pilot.connecte("hotelreservation", "root", "");
-
-            PreparedStatement stmt = Pilot.connexion.prepareStatement(sql1);
-            stmt.setInt(1, idReservation);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            int idroom = rs.getInt(1);
-            RoomDAOI rm = new RoomDAOImpl();
-            if (rm.isDisponible(idroom, debut, fin)) {
-                stmt = Pilot.connexion.prepareStatement(sql2);
-                stmt.setInt(1, nbrGuests);
-                stmt.setInt(2, nbrAdults);
-                stmt.setDate(3, new java.sql.Date(debut.getTime()));
-                stmt.setDate(4, new java.sql.Date(fin.getTime()));
-                stmt.setDate(5, new java.sql.Date(System.currentTimeMillis()));
-                stmt.setInt(6, idReservation);
-                stmt.executeUpdate();
-            } else {
-                throw new SQLException("La date choisi n'est pas convenable , réessayer !!");
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            throw e;
-        } finally {
-            Pilot.close();
-        }
-    }
 
     @Override
     public void DeleteReservation(int idReservation) throws SQLException, ClassNotFoundException {
@@ -253,5 +192,125 @@ public class ReservationDAOImpl implements ReservationDAOI{
         return idRoom;
     }
 
+    @Override
+    public void createReservation(Reservation reservation) {
+        String sql="insert into reservation(idUser,dateDebut,dateFin,dateAjout,dateUpdate) values(?,?,?,?,?)";
+        try {
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps= Pilot.connexion.prepareStatement(sql);
+
+            ps.setInt(1,reservation.getIdUser());
+            ps.setDate(2,new java.sql.Date(reservation.getDateDebut().getTime()));
+            ps.setDate(3,new java.sql.Date(reservation.getDateFin().getTime()));
+            ps.setDate(4,new java.sql.Date(reservation.getDateAjout().getTime()));
+            ps.setDate(5,new java.sql.Date(reservation.getDateUpdate().getTime()));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        sql="insert into reservationchambre(idChambre,idReservation) values(?,?)";
+        for(Room e: reservation.getRooms()){
+            try{
+                PreparedStatement ps=Pilot.connexion.prepareStatement(sql);
+                ps.setInt(1,e.getIdRoom());
+                ps.setInt(2,getLastReservationId(Session.getInstance().getUserId()));
+                ps.executeUpdate();
+                System.out.println("t\n");
+            } catch (SQLException e1) {
+                throw new RuntimeException(e1);
+            }
+        }
+
+
+
+    }
+    @Override
+    public int getLastReservationId(int idUser) throws SQLException {
+        String sql="select max(idReservation) from reservation where idUser=?";
+        try{
+            Pilot.connecte("hotelreservation","root", "");
+            PreparedStatement ps=Pilot.connexion.prepareStatement(sql);
+            ps.setInt(1,idUser);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    @Override
+    public DateRange getDateOfaReservation(int idReser) throws SQLException, ClassNotFoundException {
+        Pilot.connecte("hotelreservation", "root", "");
+        String req = "SELECT dateDebut, dateFin FROM reservation WHERE idReservation = ?";
+        DateRange dr = null;
+
+        try (PreparedStatement ps = Pilot.connexion.prepareStatement(req)) {
+            ps.setInt(1, idReser);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    dr = new DateRange(rs.getDate("dateDebut"), rs.getDate("dateFin"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching reservation dates", e);
+        }
+
+        return dr;
+    }
+    @Override
+    public ObservableList<ListReservation> getListReservations(int id) throws SQLException, ClassNotFoundException {
+        ObservableList<ListReservation> listReservations = FXCollections.observableArrayList();
+        Pilot.connecte("hotelreservation", "root", "");
+
+        String req = "SELECT * FROM reservation WHERE idUser=?";
+        try (PreparedStatement ps = Pilot.connexion.prepareStatement(req)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ListReservation lr = new ListReservation();
+                    lr.setId(rs.getInt("idReservation"));
+                    lr.setCheckInDate(rs.getDate("dateDebut").toString());
+                    lr.setCheckOutDate(rs.getDate("dateFin").toString());
+                    String req2 = "SELECT idChambre FROM reservationchambre WHERE idReservation=?";
+                    try (PreparedStatement ps2 = Pilot.connexion.prepareStatement(req2)) {
+                        ps2.setInt(1, rs.getInt("idReservation"));
+                        try (ResultSet rs2 = ps2.executeQuery()) {
+                            StringBuilder listChambres = new StringBuilder();
+                            int idC = 0;
+                            while (rs2.next()) {
+                                if (listChambres.length() > 0) {
+                                    listChambres.append(",");
+                                }
+                                idC = rs2.getInt("idChambre");
+                                listChambres.append(idC);
+                            }
+                            lr.setIdRooms(listChambres.toString());
+                            if (idC > 0) {
+                                String req3 = "SELECT h.name FROM room r JOIN hotel h ON r.idHotel = h.idHotel WHERE r.idRoom=?";
+                                try (PreparedStatement ps3 = Pilot.connexion.prepareStatement(req3)) {
+                                    ps3.setInt(1, idC);
+                                    try (ResultSet rs3 = ps3.executeQuery()) {
+                                        if (rs3.next()) {
+                                            lr.setHotelName(rs3.getString("name"));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    listReservations.add(lr);
+                }
+            }
+        }
+        return listReservations;
+    }
 
 }

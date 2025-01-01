@@ -11,7 +11,12 @@ module com.example.hoteljavafx {
     requires java.sql;
     requires static lombok;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires org.json;
+    requires stripe.java;
+    requires jdk.httpserver;
+    requires jbcrypt;
     opens com.example.hoteljavafx.Controller to javafx.fxml;
     opens com.example.hoteljavafx to javafx.fxml;
+    opens com.example.hoteljavafx.Utils to javafx.base;
     exports com.example.hoteljavafx;
 }

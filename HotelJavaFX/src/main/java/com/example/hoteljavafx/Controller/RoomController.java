@@ -17,8 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Data;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -80,13 +78,29 @@ public class RoomController {
         Button actionButton = new Button("Reservations");
         actionButton.getStyleClass().add("buttons2");
         actionButton.setPrefWidth(100);
-        actionButton.setOnAction(e -> {handleReservationClick(room.getIdRoom());});
+        actionButton.setOnAction(e -> {
+            try {
+                handleReservationClick(room.getIdRoom());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         hbox.getChildren().addAll(lblId, imageView, lblNom, lblAddress, lblNote, lblDateA, lblDateU,actionButton);
         hbox.setStyle("-fx-background-color: #f5f5f5; -fx-padding: 10;");
         return hbox;
     }
 
-    private void handleReservationClick(int idRoom) {
+    private void handleReservationClick(int idRoom) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/ReservationChambre.fxml"));
+        ReservationChambreController reservationController = new ReservationChambreController();
+        reservationController.setRoomId(idRoom);
+        loader.setController(reservationController);
+        Parent roomView = loader.load();
+        Scene roomScene = new Scene(roomView);
+        Stage currentStage = (Stage) vboxRooms.getScene().getWindow();
+        currentStage.setScene(roomScene);
+        currentStage.setTitle("Dashboard");
+        currentStage.show();
     }
 
 

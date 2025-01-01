@@ -48,7 +48,8 @@ public class UserController implements Initializable {
     @FXML
     private ComboBox<Role> roleComboBox;
 
-    private UserDAOI user = new UserDAOImpl(); // Instance du service utilisateur
+    private UserDAOI user = new UserDAOImpl();// Instance du service utilisateur
+    private int id;
 
 
     @FXML
@@ -94,7 +95,7 @@ public class UserController implements Initializable {
     @FXML
     public void editUser() throws SQLException, IOException {
         UserDAOI userService = new UserDAOImpl();
-        userService.UpdateUser(nom.getText(),prenom.getText(),address.getText(),email.getText(),phone.getText());
+        userService.UpdateUser(nom.getText(),prenom.getText(),address.getText(),email.getText(),phone.getText(),id);
         loadView("utilisateurs.fxml");
     }
 
@@ -124,7 +125,6 @@ public class UserController implements Initializable {
         {
             try {
 
-                // Chargez la nouvelle vue
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/editUser.fxml"));
                 loader.setController(this);
                 Parent addUserView = loader.load();
@@ -135,6 +135,7 @@ public class UserController implements Initializable {
                 address.setText(user1.getAddress());
                 email.setText(user1.getEmail());
                 phone.setText(user1.getPhone());
+                id=user1.getIdUser();
                 // Remplacez la vue actuelle ou affichez une nouvelle scène
                 Scene scene = new Scene(addUserView);
                 Stage stage = (Stage) editButton.getScene().getWindow(); // Obtenez la scène actuelle
@@ -255,15 +256,12 @@ public class UserController implements Initializable {
         loadView("utilisateurs.fxml");
     }
 
-    @FXML
-    private void handleStatisticsClick() throws IOException {
-        loadView("statistiques.fxml");
-    }
 
     @FXML
-    private void handleSettingsClick() throws IOException {
-        loadView("parametres.fxml");
+    private void handleHotelsClick() throws IOException {
+        loadView("Hotels.fxml");
     }
+
 
     @FXML
     private void handleAccountClick() throws IOException {

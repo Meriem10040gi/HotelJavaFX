@@ -12,19 +12,23 @@ public interface UserDAOI {
 
     int getNbrUsers() throws SQLException, ClassNotFoundException;
 
+    String[] getHashedPassword(String email);
+
     String addNewUser(String nom, String prenom, String address, String email, String phone, Role role, String password, String confPassword) throws IOException,IllegalArgumentException, SQLException;
 
     List<User> getAllUsers() throws IOException, SQLException;
 
-    void UpdateUser(String nom, String prenom, String address, String email, String phone) throws IOException, SQLException;
+    void UpdateUser(String nom, String prenom, String address, String email, String phone, int id) throws IOException, SQLException;
 
     void UpdatePasswordUser(String email, String password, String confPassword) throws IOException, SQLException;
 
     void DeleteUser(int idUser) throws IOException, SQLException;
 
-    int login(String email, String password) throws IOException, SQLException;
-
-    void logout();
-
     boolean isConnected();
+
+    List<Integer> selectFavoriteHotels(int idUser);
+
+    void insertFavoritehotel(int idUser, int idHotel);
+
+    void deleteFavoritehotel(int idUser, int idHotel);
 }
