@@ -24,9 +24,11 @@ import java.util.regex.Pattern;
 public class viewHotelController implements Initializable {
     private List<Integer> ChambersReserved=new ArrayList<>();
     @FXML
-    BorderPane content;
+    private Label username;
     @FXML
-    DatePicker checkIn,checkOut;
+    private BorderPane content;
+    @FXML
+    private DatePicker checkIn,checkOut;
     @FXML
     private Label HotelName;
     @FXML
@@ -77,6 +79,12 @@ public class viewHotelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        UserDAOI userdao = new UserDAOImpl();
+        try {
+            username.setText(userdao.getUser(Session.getInstance().getUserId()).getNom() + " " + userdao.getUser(Session.getInstance().getUserId()).getPrenom());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         HotelName.setText(HomeController.getHotelselection());
         reset.setVisible(false);
         BookNow.setVisible(false);

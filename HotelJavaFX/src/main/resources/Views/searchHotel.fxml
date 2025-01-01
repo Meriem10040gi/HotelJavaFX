@@ -249,7 +249,7 @@
                <children>
                   <HBox prefHeight="98.0" prefWidth="220.0">
                      <children>
-                        <Label fx:id="username" alignment="CENTER" prefHeight="79.0" prefWidth="223.0" text="Username">
+                        <Label fx:id="username" alignment="CENTER" prefHeight="79.0" prefWidth="223.0">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>

@@ -1,5 +1,7 @@
 package com.example.hoteljavafx.Controller;
 
+import com.example.hoteljavafx.DAO.UserDAOI;
+import com.example.hoteljavafx.DAO.UserDAOImpl;
 import com.example.hoteljavafx.Utils.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,6 +72,8 @@ public class searchHotelController implements Initializable {
 
     @FXML
     private ComboBox<Cities> cities;
+    @FXML
+    private Label username;
 
     private static String hotelselection;
 
@@ -82,6 +86,12 @@ public class searchHotelController implements Initializable {
 
     @Override
     public void initialize (URL location, ResourceBundle resources) {
+        UserDAOI userdao = new UserDAOImpl();
+        try {
+            username.setText(userdao.getUser(Session.getInstance().getUserId()).getNom() + " " + userdao.getUser(Session.getInstance().getUserId()).getPrenom());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         cities.getItems().addAll(Cities.values());
         PaginationGest paginationGest = new PaginationGest();
         searchMethod search = new searchMethod();
