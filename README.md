@@ -5,11 +5,17 @@
 **Fonctionnalités**
 
    Consulter les hôtels .
+   
    Chercher des hôtels .
+   
    Consulter les chambres .
+   
    réservez des chambres .
+   
    effectuer le paiement .
+   
    ajouter des hôtels à la liste des favoris .
+   
    ....
 
 
@@ -27,4 +33,5 @@ Base de données : Avant de lancer l'application, créez la base de données en 
 **Authentification**
 
 L'email administrateur par défaut est : **admin@gmail.com** 
+
 Le mot de passe : **Admin@12**
