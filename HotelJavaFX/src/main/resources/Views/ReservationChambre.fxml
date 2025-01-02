@@ -126,23 +126,16 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                                         </Label>
-                                        <Label layoutX="40.0" layoutY="29.0" prefHeight="17.0" prefWidth="220.0" text="User Email">
+                                        <Label layoutX="40.0" layoutY="29.0" prefHeight="17.0" prefWidth="300.0" text="User Email">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                                        <Label layoutX="40.0" layoutY="29.0" prefHeight="17.0" prefWidth="140.0" text="Adults Number">
+                                    
+                                        <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="300.0" text="Date Debut">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                                        <Label layoutX="97.0" layoutY="29.0" prefHeight="17.0" prefWidth="140.0" text="Children Number">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                                        <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="200.0" text="Date Debut">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Label>
-                                        <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="200.0" text="Date Fin">
+                                        <Label layoutX="212.0" layoutY="29.0" prefHeight="17.0" prefWidth="300.0" text="Date Fin">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
