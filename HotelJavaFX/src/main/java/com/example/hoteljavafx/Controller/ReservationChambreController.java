@@ -60,14 +60,14 @@ public class ReservationChambreController {
         lblId.setPrefWidth(120);
 
         Label lblEmail = new Label(String.valueOf(user.getEmail()));
-        lblEmail.setPrefWidth(220);
+        lblEmail.setPrefWidth(300);
 
 
         Label lblDateD = new Label(reservation.getDateDebut().toString());
-        lblDateD.setPrefWidth(200);
+        lblDateD.setPrefWidth(300);
 
         Label lblDateF = new Label(reservation.getDateFin().toString());
-        lblDateF.setPrefWidth(200);
+        lblDateF.setPrefWidth(300);
 
         hbox.getChildren().addAll(lblId, lblEmail, lblDateD, lblDateF);
         hbox.setStyle("-fx-background-color: #f5f5f5; -fx-padding: 10;");
